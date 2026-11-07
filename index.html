@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ห้องทดลองจับคู่กรด–เบส | เคมี ม.5</title>
+<style>
+:root{--ink:#18324b;--muted:#61758a;--blue:#2376c9;--teal:#159b91;--orange:#e58a35;--paper:#f2f6ff;--line:#dce6ef;--white:#fff;--pink:#f3a6c8;--purple:#9a82df;--yellow:#ffd66e}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 8%,#ffe8f2 0,transparent 22%),radial-gradient(circle at 92% 18%,#e1f5ff 0,transparent 25%),linear-gradient(135deg,#f4f2ff,#effaff 55%,#fff8ed);color:var(--ink);font-family:Tahoma,"Noto Sans Thai",sans-serif;line-height:1.55}
+header{background:linear-gradient(115deg,#563b9b 0%,#2376c9 52%,#13a99b 100%);color:white;padding:30px 18px 26px;position:relative;overflow:hidden}header:after{content:'⚗️  ✦  🧪';position:absolute;right:5%;bottom:8px;font-size:clamp(28px,5vw,54px);opacity:.18;letter-spacing:12px;pointer-events:none}
+.wrap{max-width:1080px;margin:auto;padding:0 16px}header .eyebrow{opacity:.85;font-size:13px;letter-spacing:.06em}h1{font-size:clamp(24px,4vw,36px);margin:5px 0}header p{margin:6px 0 0;opacity:.92}
+main{padding:22px 0 40px}.card{background:linear-gradient(145deg,#fff 0%,#fcfdff 100%);border:1px solid #d9e4f4;border-radius:19px;padding:20px;margin:0 0 16px;box-shadow:0 8px 24px #354c7a12;position:relative;overflow:hidden}.card:nth-of-type(2n){border-top:4px solid #9a82df}.card:nth-of-type(2n+1){border-top:4px solid #45b9ae}
+h2{font-size:20px;margin:0 0 12px;color:#174e7c}h3{font-size:16px;margin:0 0 8px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}.pill{background:linear-gradient(100deg,#e5f1ff,#f2eaff);color:#58449a;border:1px solid #e2dafa;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:bold}
+.objective{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.objective div{background:#f5f9fd;border-radius:12px;padding:12px}
+label{font-weight:bold;display:block;margin-bottom:7px}select,input[type=range]{width:100%}select{padding:11px;border:1px solid #b9cbdc;border-radius:10px;background:white;color:var(--ink);font:inherit}
+.controls{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;align-items:end}.rangebox{background:#f5f9fd;padding:13px;border-radius:12px}
+input[type=range]{accent-color:var(--blue)}.rangehead{display:flex;justify-content:space-between;gap:10px;font-weight:bold}.hint{font-size:13px;color:var(--muted)}
+.equation{font-size:clamp(18px,3vw,25px);font-weight:bold;text-align:center;padding:16px 8px;background:#f1f7fc;border-radius:13px;margin:14px 0}
+.species{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap}.particle{border:2px solid #cbddeb;border-radius:14px;padding:10px 14px;min-width:88px;text-align:center;background:linear-gradient(145deg,#fff,#f2f8ff);transition:.25s;box-shadow:0 4px 12px #2b54800d}.particle strong{display:block;font-size:22px}.particle small{color:var(--muted)}.arrow{font-size:23px;color:#6e8499}
+.transit{height:92px;position:relative;overflow:hidden;background:#f6f9fc;border-radius:12px;margin:12px 0}.proton{position:absolute;top:27px;left:10%;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#ffe1a8;color:#8a4b00;font-weight:bold;box-shadow:0 3px 9px #a66a2233;animation:move 3s ease-in-out infinite alternate}
+@keyframes move{from{left:12%}to{left:83%}}
+.transit .left,.transit .right{position:absolute;top:34px;font-weight:bold;color:#506a82}.transit .left{left:3%}.transit .right{right:3%}
+.pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:12px}.pair{border-radius:12px;padding:13px;background:linear-gradient(120deg,#e8fbf6,#eef4ff);border-left:4px solid var(--teal);box-shadow:0 4px 12px #2b54800a}.pair b{font-size:18px;color:#087d75}.pair span{display:block;color:#476675;font-size:13px}
+.graphwrap{background:#fbfdff;border:1px solid var(--line);border-radius:13px;padding:12px}.graphwrap canvas{width:100%;height:250px;display:block}.legend{display:flex;gap:15px;flex-wrap:wrap;font-size:13px;color:var(--muted)}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+.status{padding:12px;border-radius:12px;background:#fff7e9;color:#80500e;margin-top:10px}.btn{border:0;border-radius:10px;padding:10px 15px;background:var(--blue);color:white;font:inherit;font-weight:bold;cursor:pointer}.btn.secondary{background:#eaf1f7;color:#245579}.question{padding:15px;border:1px solid #d9dff1;border-radius:14px;margin:12px 0;background:linear-gradient(120deg,#fff,#f8f6ff);box-shadow:0 4px 12px #4c3a8310}.question:nth-child(3n+1){border-left:5px solid #f3a6c8}.question:nth-child(3n+2){border-left:5px solid #8eacee}.question:nth-child(3n){border-left:5px solid #66c7b7}.question p{font-weight:bold;margin:0 0 9px}.question label{font-weight:normal;margin:7px 0;display:flex;gap:8px;align-items:flex-start}.feedback{font-size:14px;margin-top:8px}.correct{color:#087d55}.wrong{color:#b64b36}.footer{text-align:center;color:#75879a;font-size:12px;padding:8px}
+@media(max-width:650px){.controls{grid-template-columns:1fr}.card{padding:16px}.species{gap:5px}.particle{min-width:72px;padding:8px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">INTERACTIVE CHEMISTRY LAB · ระดับชั้นมัธยมศึกษาปีที่ 5</div>
+<h1>ห้องทดลองจับคู่กรด–เบส</h1>
+<p>สำรวจการให้และรับโปรตอน (H⁺) ตามทฤษฎีกรด–เบสของบรอนสเตด–ลาวรี</p>
+</div></header>
+<main class="wrap">
+<section class="card">
+<h2>เป้าหมายการเรียนรู้</h2>
+<div class="objective">
+<div><b>ทดลอง</b><br><span class="hint">ปรับระดับความคืบหน้าของการถ่ายโอนโปรตอน</span></div>
+<div><b>สังเกต</b><br><span class="hint">ติดตามการเปลี่ยนแปลงของสารตั้งต้นและผลิตภัณฑ์</span></div>
+<div><b>วิเคราะห์</b><br><span class="hint">ระบุคู่กรด–เบสคู่ควบและอธิบายการให้–รับ H⁺</span></div>
+</div>
+<div class="pills" style="margin-top:13px"><span class="pill">กรด = ผู้ให้ H⁺</span><span class="pill">เบส = ผู้รับ H⁺</span><span class="pill">คู่ควบต่างกัน 1 โปรตอน</span></div>
+</section>
+
+<section class="card">
+<h2>กิจกรรมที่ 1 · ทดลองถ่ายโอนโปรตอน</h2>
+<div class="controls">
+<div><label for="reaction">เลือกระบบปฏิกิริยา</label>
+<select id="reaction">
+<option value="ammonia">แอมโมเนียกับน้ำ</option>
+<option value="hcl">กรดไฮโดรคลอริกกับน้ำ</option>
+<option value="acetic">กรดอะซิติกกับน้ำ</option>
+</select></div>
+<div class="rangebox"><div class="rangehead"><label for="progress">ความคืบหน้าการถ่ายโอนโปรตอน</label><output id="progressValue">50%</output></div>
+<input id="progress" type="range" min="0" max="100" value="50" step="1">
+<div class="hint">เลื่อนแถบเพื่อจำลองสัดส่วนการเปลี่ยนจากสารตั้งต้นไปเป็นผลิตภัณฑ์</div></div>
+</div>
+<div class="equation" id="equation" aria-live="polite"></div>
+<div class="species" id="species"></div>
+<div class="transit"><span class="left" id="donorLabel">ผู้ให้ H⁺</span><span class="right" id="acceptorLabel">ผู้รับ H⁺</span><div class="proton">H⁺</div></div>
+<div class="pairs" id="pairs"></div>
+<div class="status" id="explain" aria-live="polite"></div>
+</section>
+
+<section class="card">
+<h2>กิจกรรมที่ 2 · กราฟการเปลี่ยนแปลงแบบ Real-time</h2>
+<p class="hint">กราฟแสดงสัดส่วนเชิงแบบจำลอง (หน่วยสมมติ) เมื่อเลื่อนระดับความคืบหน้า ไม่ใช่ค่าความเข้มข้นสมดุลที่วัดจากการทดลองจริง</p>
+<div class="graphwrap"><canvas id="chart" width="900" height="300" aria-label="กราฟสัดส่วนสารตั้งต้นและผลิตภัณฑ์"></canvas>
+<div class="legend" id="legend"></div></div>
+<p class="hint" style="margin-bottom:0">แกน X = ความคืบหน้าการถ่ายโอนโปรตอน (%) · แกน Y = สัดส่วนเชิงแบบจำลอง</p>
+</section>
+
+<section class="card">
+<h2>สรุปหลักการ</h2>
+<ul>
+<li>กรดบรอนสเตด–ลาวรีเป็นสารที่ <b>ให้โปรตอน (H⁺)</b></li>
+<li>เบสบรอนสเตด–ลาวรีเป็นสารที่ <b>รับโปรตอน (H⁺)</b></li>
+<li>เมื่อกรดให้ H⁺ จะกลายเป็น <b>เบสคู่ควบ</b> และเมื่อเบสรับ H⁺ จะกลายเป็น <b>กรดคู่ควบ</b></li>
+<li>สารในคู่กรด–เบสคู่ควบมีองค์ประกอบเหมือนกัน ต่างกันเพียง H⁺ หนึ่งตัว</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>กิจกรรมที่ 3 · ตรวจสอบความเข้าใจ</h2>
+<p class="hint">เลือกคำตอบทั้ง 10 ข้อ แล้วกด “ตรวจคำตอบ” เพื่อดูคะแนน เฉลย และคำอธิบาย</p>
+<div id="quiz"></div>
+<button class="btn" id="check">ตรวจคำตอบ</button>
+<button class="btn secondary" id="reset" type="button">ทำใหม่</button>
+<div id="score" style="margin-top:12px;font-weight:bold" aria-live="polite"></div>
+</section>
+<div class="footer">สื่อประกอบการเรียนรู้วิชาเคมี · ใช้งานได้โดยไม่ต้องเชื่อมต่ออินเทอร์เน็ต</div>
+</main>
+<script>
+const systems={
+ammonia:{eq:'NH₃ + H₂O ⇌ NH₄⁺ + OH⁻',react:['NH₃','H₂O'],prod:['NH₄⁺','OH⁻'],acid:'H₂O',base:'NH₃',conjBase:'OH⁻',conjAcid:'NH₄⁺',pairs:[['NH₄⁺ / NH₃','กรดคู่ควบ / เบสคู่ควบ'],['H₂O / OH⁻','กรด / เบสคู่ควบ']],donor:'H₂O ให้ H⁺',acceptor:'NH₃ รับ H⁺',desc:'น้ำ (H₂O) ให้ H⁺ แก่ NH₃ จึงเกิด OH⁻ และ NH₄⁺ ตามลำดับ'},
+hcl:{eq:'HCl + H₂O → H₃O⁺ + Cl⁻',react:['HCl','H₂O'],prod:['H₃O⁺','Cl⁻'],acid:'HCl',base:'H₂O',conjBase:'Cl⁻',conjAcid:'H₃O⁺',pairs:[['HCl / Cl⁻','กรด / เบสคู่ควบ'],['H₃O⁺ / H₂O','กรดคู่ควบ / เบส']],donor:'HCl ให้ H⁺',acceptor:'H₂O รับ H⁺',desc:'HCl ให้ H⁺ แก่น้ำ เกิด H₃O⁺ และ Cl⁻ โดย HCl/Cl⁻ และ H₃O⁺/H₂O เป็นคู่กรด–เบสคู่ควบ'},
+acetic:{eq:'CH₃COOH + H₂O ⇌ CH₃COO⁻ + H₃O⁺',react:['CH₃COOH','H₂O'],prod:['CH₃COO⁻','H₃O⁺'],acid:'CH₃COOH',base:'H₂O',conjBase:'CH₃COO⁻',conjAcid:'H₃O⁺',pairs:[['CH₃COOH / CH₃COO⁻','กรด / เบสคู่ควบ'],['H₃O⁺ / H₂O','กรดคู่ควบ / เบส']],donor:'CH₃COOH ให้ H⁺',acceptor:'H₂O รับ H⁺',desc:'กรดอะซิติก (CH₃COOH) ให้ H⁺ แก่น้ำ เกิด CH₃COO⁻ และ H₃O⁺'}
+};
+const $=id=>document.getElementById(id);let current='ammonia';
+function draw(){
+ const d=systems[current],p=+$('progress').value/100;
+ $('progressValue').textContent=Math.round(p*100)+'%';$('equation').textContent=d.eq;
+ $('species').innerHTML=`<div class="particle"><strong>${d.react[0]}</strong><small>สารตั้งต้น</small></div><div class="particle"><strong>+</strong></div><div class="particle"><strong>${d.react[1]}</strong><small>สารตั้งต้น</small></div><div class="arrow">⇌</div><div class="particle" style="border-color:#8bc9bf;background:#f0fbf8"><strong>${d.prod[0]}</strong><small>ผลิตภัณฑ์</small></div><div class="particle"><strong>+</strong></div><div class="particle" style="border-color:#8bc9bf;background:#f0fbf8"><strong>${d.prod[1]}</strong><small>ผลิตภัณฑ์</small></div>`;
+ $('donorLabel').textContent=d.donor;$('acceptorLabel').textContent=d.acceptor;
+ $('pairs').innerHTML=d.pairs.map(x=>`<div class="pair"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');
+ $('explain').innerHTML=`<b>สังเกตและวิเคราะห์:</b> ${d.desc}<br>ขณะนี้แบบจำลองเปลี่ยนไปเป็นผลิตภัณฑ์ประมาณ <b>${Math.round(p*100)}%</b> · สารตั้งต้นคงเหลือประมาณ <b>${Math.round((1-p)*100)}%</b>`;
+ drawChart(p,d);
+}
+function drawChart(p,d){
+ const c=$('chart'),ctx=c.getContext('2d'),w=c.width,h=c.height;ctx.clearRect(0,0,w,h);
+ const L=58,R=22,T=20,B=42,gw=w-L-R,gh=h-T-B;
+ ctx.strokeStyle='#dce6ef';ctx.lineWidth=1;ctx.font='16px Tahoma';ctx.fillStyle='#61758a';
+ for(let i=0;i<=5;i++){let y=T+gh*i/5;ctx.beginPath();ctx.moveTo(L,y);ctx.lineTo(w-R,y);ctx.stroke();ctx.fillText((1-i/5).toFixed(1),12,y+5)}
+ for(let i=0;i<=5;i++){let x=L+gw*i/5;ctx.beginPath();ctx.moveTo(x,T);ctx.lineTo(x,T+gh);ctx.stroke();ctx.fillText(i*20+'%',x-16,h-12)}
+ ctx.fillStyle='#18324b';ctx.font='bold 16px Tahoma';ctx.fillText('สัดส่วน',L,T-4);
+ function line(fn,color){ctx.beginPath();for(let i=0;i<=100;i++){let x=L+gw*i/100,y=T+gh*(1-fn(i/100));if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.strokeStyle=color;ctx.lineWidth=3;ctx.stroke()}
+ line(x=>1-x,'#2376c9');line(x=>x,'#159b91');
+ function mark(v,color){let x=L+gw*v,y=T+gh*(1-v);ctx.beginPath();ctx.arc(x,y,7,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();ctx.strokeStyle='white';ctx.lineWidth=2;ctx.stroke()}
+ mark(p,'#159b91');let x=L+gw*p,y=T+gh*p;ctx.beginPath();ctx.arc(x,T+gh*(1-p),7,0,Math.PI*2);ctx.fillStyle='#2376c9';ctx.fill();ctx.strokeStyle='white';ctx.stroke();
+ $('legend').innerHTML=`<span><i class="dot" style="background:#2376c9"></i>สารตั้งต้น (ลดลง)</span><span><i class="dot" style="background:#159b91"></i>ผลิตภัณฑ์ (เพิ่มขึ้น)</span><span>ตำแหน่งปัจจุบัน: ${Math.round(p*100)}%</span>`;
+}
+$('reaction').addEventListener('change',e=>{current=e.target.value;draw()});$('progress').addEventListener('input',draw);
+const questions=[
+{q:'1. ตามทฤษฎีบรอนสเตด–ลาวรี กรดคือสารที่มีสมบัติอย่างไร?',a:['รับโปรตอน (H⁺)','ให้โปรตอน (H⁺)','รับอิเล็กตรอนเท่านั้น','ให้ไฮดรอกไซด์ไอออน (OH⁻)'],correct:1,why:'กรดบรอนสเตด–ลาวรีคือสารที่ให้โปรตอน (H⁺) แก่สารอื่น'},
+{q:'2. ในปฏิกิริยา NH₃ + H₂O ⇌ NH₄⁺ + OH⁻ สารใดทำหน้าที่เป็นกรด?',a:['NH₃','H₂O','NH₄⁺','OH⁻'],correct:1,why:'H₂O เป็นผู้ให้ H⁺ แก่ NH₃ จึงทำหน้าที่เป็นกรด'},
+{q:'3. ในปฏิกิริยา NH₃ + H₂O ⇌ NH₄⁺ + OH⁻ สารใดเป็นเบส?',a:['NH₃','H₂O','NH₄⁺','OH⁻'],correct:0,why:'NH₃ รับ H⁺ จากน้ำ จึงเป็นเบสบรอนสเตด–ลาวรี'},
+{q:'4. เบสคู่ควบของ HCl ในปฏิกิริยา HCl + H₂O → H₃O⁺ + Cl⁻ คือสารใด?',a:['H₃O⁺','H₂O','Cl⁻','HCl'],correct:2,why:'HCl เสีย H⁺ แล้วเหลือ Cl⁻ ดังนั้น Cl⁻ คือเบสคู่ควบ'},
+{q:'5. กรดคู่ควบของ H₂O เมื่อรับโปรตอน (H⁺) คือสารใด?',a:['OH⁻','O²⁻','H₃O⁺','H₂O₂'],correct:2,why:'น้ำรับ H⁺ แล้วกลายเป็น H₃O⁺ ซึ่งเป็นกรดคู่ควบ'},
+{q:'6. คู่ใดเป็นคู่กรด–เบสคู่ควบ?',a:['HCl และ NaCl','NH₄⁺ และ NH₃','H₂O และ H₂O₂','H₃O⁺ และ OH⁻'],correct:1,why:'NH₄⁺ และ NH₃ มีองค์ประกอบต่างกันเพียง H⁺ หนึ่งตัว'},
+{q:'7. ในปฏิกิริยา CH₃COOH + H₂O ⇌ CH₃COO⁻ + H₃O⁺ สารใดเป็นเบสคู่ควบ?',a:['CH₃COOH','H₂O','CH₃COO⁻','H₃O⁺'],correct:2,why:'CH₃COOH ให้ H⁺ แล้วกลายเป็น CH₃COO⁻ ซึ่งเป็นเบสคู่ควบ'},
+{q:'8. เมื่อเบสรับโปรตอน (H⁺) จะเปลี่ยนเป็นสารชนิดใด?',a:['กรดคู่ควบ','เบสคู่ควบ','เกลือเสมอ','สารที่ไม่มีประจุเสมอ'],correct:0,why:'เบสเมื่อรับ H⁺ จะกลายเป็นกรดคู่ควบของมัน'},
+{q:'9. ข้อใดกล่าวถูกต้องเกี่ยวกับสมาชิกในคู่กรด–เบสคู่ควบ?',a:['ต้องมีประจุเท่ากันเสมอ','ต่างกันด้วย H⁺ หนึ่งตัว','ต้องมีจำนวนอะตอมเท่ากันทุกชนิด','ต้องเป็นสารสถานะเดียวกัน'],correct:1,why:'สมาชิกในคู่กรด–เบสคู่ควบต่างกันเพียงโปรตอนหนึ่งตัว'},
+{q:'10. ในปฏิกิริยา HCl + H₂O → H₃O⁺ + Cl⁻ สารใดเป็นกรดคู่ควบ?',a:['HCl','Cl⁻','H₂O','H₃O⁺'],correct:3,why:'H₂O รับ H⁺ จาก HCl แล้วกลายเป็น H₃O⁺ ซึ่งเป็นกรดคู่ควบ'}
+]
+function buildQuiz(){
+ $('quiz').innerHTML=questions.map((q,i)=>`<div class="question"><p>${q.q}</p>${q.a.map((a,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${String.fromCharCode(65+j)}. ${a}</label>`).join('')}<div class="feedback" id="f${i}"></div></div>`).join('');
+}
+$('check').addEventListener('click',()=>{let score=0,answered=0;questions.forEach((q,i)=>{let s=document.querySelector(`input[name=q${i}]:checked`),f=$('f'+i);if(!s){f.innerHTML='<span class="wrong">ยังไม่ได้เลือกคำตอบ</span>';return}answered++;if(+s.value===q.correct){score++;f.innerHTML=`<span class="correct">ถูกต้อง ✓</span> — ${q.why}`}else{f.innerHTML=`<span class="wrong">ยังไม่ถูกต้อง ✗</span> — เฉลย: ${String.fromCharCode(65+q.correct)}. ${q.a[q.correct]} · ${q.why}`}});$('score').textContent=`คะแนน ${score}/10 (${answered} ข้อที่ตอบ)`});
+$('reset').addEventListener('click',()=>{$('quiz').querySelectorAll('input').forEach(x=>x.checked=false);questions.forEach((q,i)=>$('f'+i).textContent='');$('score').textContent='';});
+buildQuiz();draw();
+</script>
+</body></html>
